@@ -27,7 +27,7 @@ public class HelloController {
             if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
                 ipAddress = request.getRemoteAddr();
                 if (ipAddress.equals("127.0.0.1")) {
-                    // 根据网卡取本机配置的IP
+                    // 鏍规嵁缃戝崱鍙栨湰鏈洪厤缃殑IP
                     InetAddress inet = null;
                     try {
                         inet = InetAddress.getLocalHost();
@@ -37,7 +37,7 @@ public class HelloController {
                     ipAddress = inet.getHostAddress();
                 }
             }
-            // 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
+            // 瀵逛簬閫氳繃澶氫釜浠ｇ悊鐨勬儏鍐碉紝绗竴涓狪P涓哄鎴风鐪熷疄IP,澶氫釜IP鎸夌収','鍒嗗壊
             if (ipAddress != null && ipAddress.length() > 15) { // "***.***.***.***".length()
                 // = 15
                 if (ipAddress.indexOf(",") > 0) {
@@ -47,6 +47,7 @@ public class HelloController {
         } catch (Exception e) {
             ipAddress="";
         }
+        // ipAddress = this.getRequest().getRemoteAddr();
         // ipAddress = this.getRequest().getRemoteAddr();
  
         return ipAddress;
